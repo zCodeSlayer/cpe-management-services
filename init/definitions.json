@@ -33,6 +33,15 @@
           "arguments": {
               "x-queue-type": "classic"
           }
+      },
+      {
+          "name": "externally_configured_queue_2",
+          "vhost": "/",
+          "durable": true,
+          "auto_delete": false,
+          "arguments": {
+              "x-queue-type": "classic"
+          }
       }
   ],
   "exchanges": [
@@ -53,6 +62,14 @@
           "destination": "externally_configured_queue",
           "destination_type": "queue",
           "routing_key": "externally_configured_queue",
+          "arguments": {}
+      },
+      {
+          "source": "externally_configured_exchange",
+          "vhost": "/",
+          "destination": "externally_configured_queue_2",
+          "destination_type": "queue",
+          "routing_key": "externally_configured_queue_2",
           "arguments": {}
       }
     ]
