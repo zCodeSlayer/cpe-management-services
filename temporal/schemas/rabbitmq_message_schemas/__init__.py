@@ -1,0 +1,1 @@
+from .configuration_message_schema import ConfigurationMessageSchema
