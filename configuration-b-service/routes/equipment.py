@@ -41,7 +41,7 @@ async def activate_equipment(
         {
             "equipmentId": id,
             "taskId": task_id,
-            "configuration": configuration.dict(),
+            "configuration": configuration.model_dump(by_alias=True),
         }
     )
     await rabbitmq_client.send_message(

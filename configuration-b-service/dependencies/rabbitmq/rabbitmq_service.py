@@ -60,6 +60,6 @@ class RabbitMQService:
         msg = aio_pika.Message(
             body,
             delivery_mode=aio_pika.DeliveryMode.PERSISTENT,
-            content_type="text/plain; charset=utf-8",
+            content_type="application/json; charset=utf-8",
         )
         await self.__channel.default_exchange.publish(msg, routing_key=queue_name)
