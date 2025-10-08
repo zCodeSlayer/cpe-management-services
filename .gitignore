@@ -1,2 +1,3 @@
 ./configuration-a-service/.venv
 ./configuration-b-service/.venv
+./temporal/.venv
