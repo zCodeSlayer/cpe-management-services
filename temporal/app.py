@@ -24,7 +24,7 @@ async def redirect_configuration_massage(
     configuration_data = configuration_massage.configuration.model_dump(by_alias=True)
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            f"configuration-a-service/api/v1/equipment/cpe/{configuration_massage.equipment_id}",
+            f"{settings.configuration_a_service_url}/api/v1/equipment/cpe/{configuration_massage.equipment_id}",
             json=configuration_data,
         ) as resp:
             print(resp.status)

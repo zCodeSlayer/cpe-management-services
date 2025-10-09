@@ -10,5 +10,11 @@ class RabbitMQSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
-class Settings(RabbitMQSettings):
+class ConfigurationAServiceSettings(BaseSettings):
+    configuration_a_service_url: str
+
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+
+
+class Settings(RabbitMQSettings, ConfigurationAServiceSettings):
     pass
