@@ -5,10 +5,13 @@ from faststream import FastStream
 from faststream.rabbit import RabbitBroker, RabbitQueue
 
 from schemas.rabbitmq_message_schemas import ConfigurationMessageSchema
+from config import Settings
 
+settings = Settings()
 
-broker = RabbitBroker("amqp://guest:guest@localhost:5672/")
-
+broker = RabbitBroker(
+    f"amqp://{settings.rabbitmq_login}:{settings.rabbitmq_password}@{settings.rabbitmq_host}:{settings.rabbitmq_port}/"
+)
 app = FastStream(broker)
 
 
@@ -21,7 +24,7 @@ async def redirect_configuration_massage(
     configuration_data = configuration_massage.configuration.model_dump(by_alias=True)
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            f"http://127.0.0.1:8000/api/v1/equipment/cpe/{configuration_massage.equipment_id}",
+            f"configuration-a-service/api/v1/equipment/cpe/{configuration_massage.equipment_id}",
             json=configuration_data,
         ) as resp:
             print(resp.status)
