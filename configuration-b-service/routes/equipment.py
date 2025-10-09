@@ -59,9 +59,7 @@ async def check_task_status(
 ):
     pattern = f"equipment:{id}*"
     cursor: int = 0
-    cursor, _ = await redis_client.scan(
-        cursor, match=pattern, count=5
-    )  # todo посмотреть как работает
+    cursor, _ = await redis_client.scan(cursor, match=pattern, count=5)
 
     if not cursor:
         return JSONResponse(
